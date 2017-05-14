@@ -1,0 +1,1 @@
+<a href="{{ route('user.show', ['id' => $user->id]) }}" @if(isset($class)) class="{{$class}}" @endif>{{ $user->name }}</a>

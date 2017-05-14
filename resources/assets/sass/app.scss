@@ -1,0 +1,146 @@
+
+// Fonts
+@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);
+
+// Bootstrap theme
+@import url(https://bootswatch.com/darkly/bootstrap.min.css);
+
+//@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
+
+.user-avatar
+{
+    border: 1px solid rgba(white, 0.1);
+}
+.title
+{
+    font-family: 'Lato', sans-serif;
+}
+.pagination-block
+{
+    text-align: center;
+}
+.categories
+{
+    a
+    {
+        transition: 0.2s all;
+
+        &:hover
+        {
+            background: rgba(white, 0.1);
+        }
+    }
+}
+.threads
+{
+    .thread
+    {
+        padding: 1em;
+
+        a
+        {
+        }
+        p.meta
+        {
+            margin: 0.8em 0 0 0;
+        }
+        .meta
+        {
+            font-size: 0.8em;
+            color: #cdcdcd;
+        }
+        .main
+        {
+            float: left;
+        }
+        .posted-lately
+        {
+            float: right;
+            width: 12%;
+
+            a
+            {
+                display: block;
+            }
+        }
+        .reply-count
+        {
+            float: right;
+            margin-right: 3em;
+            line-height: 350%;
+            font-size: 0.8em;
+            color: #cdcdcd;
+        }
+    }
+}
+.post
+{
+    display: flex;
+    flex-flow: row wrap;
+    border: 1px solid rgba(white, 0.1);
+    margin: 1em auto;
+    position: relative;
+
+    .post-by
+    {
+        width: 20%;
+        border-right: 1px solid rgba(white, 0.1);
+        text-align: center;
+        background: rgba(black, 0.1);
+        padding: 1em;
+        
+        a
+        {
+            display: block;
+        }
+    }
+    .post-content
+    {
+        width: 80%;
+        padding: 1em;
+    }
+    .post-at
+    {
+        width: 100%;
+        padding: 0.2em;
+        background: rgba(white, 0.1);
+    }
+    .manage
+    {
+        position: absolute;
+        bottom: 2%;
+        right: 2%;
+    }
+}
+.categories-panel
+{
+    .panel-heading
+    {
+        position: relative;
+
+        a
+        {
+            position: absolute;
+            right: 2%;
+            text-decoration: none;
+        }
+    }
+}
+.post-form
+{
+    margin-top: 2em;
+    padding: 2em;
+    border-top: 1px solid rgba(white, 0.1);
+
+    label
+    {
+        display: block;
+    }
+}
+#thread
+{
+    .title
+    {
+        margin: 0;
+    }
+}
