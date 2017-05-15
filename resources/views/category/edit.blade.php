@@ -3,8 +3,8 @@
 @section('title', 'Edit category')
 
 @section('content')
-    <div class="panel panel-default">
-        <div class="panel-heading">Editing category</div>
+    <div class="panel panel-default form-panel">
+        <div class="panel-heading">Edit category</div>
         <div class="panel-body">
             {!! Form::open(['action' => ['CategoryController@update', $category] , 'method' => 'PATCH']) !!}
             <div class="form-group">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Category;
 use App\User;
+use App\Role;
 
 class AdminController extends Controller
 {
@@ -47,8 +48,9 @@ class AdminController extends Controller
     public function user()
     {
         $users = User::paginate(15);
+        $roles = Role::all();
 
-        return view('admin.user', compact('users'));
+        return view('admin.user', compact('users', 'roles'));
     }
 
     /**

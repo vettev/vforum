@@ -4,9 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Thread;
 use App\Category;
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Http\Requests\StoreThreadRequest;
-use App\Http\Requests\UpdateThreadRequest;
 use Auth;
 
 class ThreadController extends Controller
@@ -27,7 +26,7 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        $threads = Thread::select()->orderBy('created_at', 'desc')->withCount('posts')->get();
+        $threads = Thread::select()->orderBy('created_at', 'desc')->withCount('posts')->paginate(15);
 
         return view('thread.index', compact('threads'));
     }
@@ -52,14 +51,14 @@ class ThreadController extends Controller
      */
     public function store(StoreThreadRequest $request)
     {
-        Thread::create([
+        $thread = Thread::create([
             "title" => $request->title,
             "category_id" => $request->category_id,
             "content" => $request->content,
             "user_id" => Auth::user()->id
         ]);
 
-        return redirect()->route('thread.index');
+        return redirect()->route('thread.show', ['id' => $thread->id]);
     }
 
     /**
@@ -83,19 +82,34 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
-        return view('thread.edit', compact('thread'));
+        $this->authorize('manage-thread', $thread);
+        $categories = Category::pluck('name', 'id')->all();
+
+        return view('thread.edit', compact('thread', 'categories'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateThreadRequest
+     * @param  \Illuminate\Http\Request
      * @param  \App\Thread  $thread
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateThreadRequest $request, Thread $thread)
+    public function update(Request $request, Thread $thread)
     {
-        //
+        $this->authorize('manage-thread', $thread);
+        $this->validate($request, [
+            'title' => 'required',
+            'content' => 'required',
+            'category_id' => 'required'
+        ]);
+
+        $thread->title = $request->title;
+        $thread->content = $request->content;
+        $thread->category_id = $request->category_id;
+        $thread->update();
+
+        return redirect()->route('thread.show', ['id' => $thread->id]);
     }
 
     /**
@@ -106,6 +120,7 @@ class ThreadController extends Controller
      */
     public function destroy(Thread $thread)
     {
+        $this->authorize('manage-thread', $thread);
         $thread->delete();
 
         return redirect()->route('thread.index');

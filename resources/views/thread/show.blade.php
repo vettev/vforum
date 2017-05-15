@@ -20,7 +20,17 @@
             </div>
             @can('manage-thread', $thread)
             <div class="manage thread-manage">
-                You can manage this thread
+                <a href="{{ route('thread.edit', ['id' => $thread->id]) }}" class="btn btn-info btn-sm">
+                    <span class="glyphicon glyphicon-edit"></span> Edit
+                </a>
+                <form action="{{ route('thread.destroy', ['id' => $thread->id]) }}" method="POST">
+                    {{ csrf_field() }}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button class="btn btn-danger btn-sm">
+                        <span class="glyphicon glyphicon-remove"></span>
+                        Delete
+                    </button>
+                </form>
             </div>
             @endcan
         </div>

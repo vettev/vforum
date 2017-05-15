@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin panel')
+@section('title', 'Categories management')
 
 @section('nav')
     @include('partials.admin-nav', ['active' => 'category'])
@@ -17,6 +17,7 @@
                         <th>Actions</th>
                     </tr>
                 </thead>
+                <tbody>
                 @foreach($categories as $category)
                     <tr>
                         <td>{{ $category->name }}</td>
@@ -26,6 +27,7 @@
                         </td>
                     </tr>
                 @endforeach
+                </tbody>
             </table>
             <div class="pagination-block">{{ $categories->links() }}</div>
         </div>

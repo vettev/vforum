@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin panel')
+@section('title', 'Create category')
 
 @section('nav')
     @include('partials.admin-nav', ['active' => 'category.create'])

@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin panel')
+@section('title', 'Settings')
 
 @section('nav')
     @include('partials.admin-nav', ['active' => 'settings'])

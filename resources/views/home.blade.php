@@ -16,9 +16,12 @@
             </div>
         </div>
         <div class="col-md-8">
-            <div class="panel panel-default">
+            <div class="panel panel-default threads-panel">
                 <div class="panel-heading">
                     Last threads
+                    @if(Auth::check())
+                    <a href="{{ route('thread.create') }}"><span class="glyphicon glyphicon-plus-sign"></span> Create thread</a>
+                    @endif
                 </div>
                 @include('thread.list')
             </div>
