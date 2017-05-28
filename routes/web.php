@@ -22,6 +22,7 @@ Route::get('/admin', 'AdminController@index')->name('admin.index');
 Route::get('/admin/category', 'AdminController@category')->name('admin.category');
 Route::get('/admin/user', 'AdminController@user')->name('admin.user');
 Route::get('/admin/settings', 'AdminController@settings')->name('admin.settings');
+Route::post('/admin/settings', 'AdminController@updateSettings')->name('admin.settings.update');
 
 Route::resource('/thread', 'ThreadController');
 Route::resource('/category', 'CategoryController');

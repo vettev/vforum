@@ -10,7 +10,15 @@
     <div class="panel panel-info">
         <div class="panel-heading">Settings</div>
         <div class="panel-body">
-            Forum Settings
+            {!! Form::open(['route' => 'admin.settings.update','method' => 'POST']) !!}
+            <div class="form-group">
+                {!! Form::label('title', 'Page title') !!}
+                {!! Form::text('title', config()['app']['name'], ['placeholder' => 'Site title', 'class' => 'form-control']) !!}
+            </div>
+            <div class="form-group">
+                {!! Form::submit('Save settings', ['class' => 'btn btn-primary']) !!}
+            </div>
+            {!! Form::close() !!}
         </div>
     </div>
 @endsection

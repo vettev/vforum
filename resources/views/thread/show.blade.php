@@ -43,4 +43,15 @@
             @include('post.create')
         </div>
     </div>
+    <div id="edit-post" hidden>
+        <form class="edit-post-form">
+            <input type="hidden" id="id" value="0" name="id">
+            <div class="form-group">
+                <textarea name="content" id="content" rows="6" placeholder="Content of your post..." class="form-control"></textarea>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-info">Edit</button>
+            </div>
+        </form>
+    </div>
 @endsection

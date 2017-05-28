@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Category;
 use App\User;
 use App\Role;
+use Illuminate\Http\Response;
+use Config;
 
 class AdminController extends Controller
 {
@@ -61,5 +63,17 @@ class AdminController extends Controller
     public function settings()
     {
         return view('admin.settings');
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @return Response
+     */
+    public function updateSettings(Request $request)
+    {
+        Config::set('app.name', $request->title);
+
+        return redirect()->route('admin.settings');
     }
 }

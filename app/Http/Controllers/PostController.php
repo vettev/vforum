@@ -41,7 +41,11 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize('manage-post', $post);
+        $post->content = $request->content;
+        $post->update();
+
+        return response()->json(['Message' => 'Edited successfully']);
     }
 
     /**
@@ -52,6 +56,9 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('manage-post', $post);
+
+        $post->delete();
+        return redirect()->back();
     }
 }

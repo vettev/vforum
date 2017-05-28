@@ -794,8 +794,34 @@ var app = new Vue({
             __WEBPACK_IMPORTED_MODULE_0_axios___default.a.delete(url).then(function () {
                 target.parent().parent().remove();
             });
+        },
+        editPost: function editPost() {
+            var target = $(event.target);
+            var postId = target.data('id');
+            var editForm = $('#edit-post').clone();
+            var postContent = target.parent().parent().find('.post-content');
+            editForm.find('[name="id"]').val(postId);
+            editForm.find('[name="content"]').html(postContent.html().trim());
+            $('#post-' + postId).find('.manage-post').hide();
+            postContent.html(editForm.html());
         }
     }
+});
+
+$('.post').on('submit', '.edit-post-form', function (e) {
+    e.preventDefault();
+    var form = $(this);
+    var postId = form.find('[name="id"]').val();
+    var token = $('meta[name="csrf-token"]').attr('content');
+    var content = form.find('[name="content"]').val();
+    var url = "/post/" + postId;
+    __WEBPACK_IMPORTED_MODULE_0_axios___default.a.patch(url, {
+        content: content
+    }).then(function () {
+        var post = '#post-' + postId;
+        $(post).find('.post-content').html(content);
+        $(post).find('.manage-post').show();
+    });
 });
 
 /***/ }),

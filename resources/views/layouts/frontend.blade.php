@@ -20,6 +20,7 @@
             @yield('content')
         </div>
     </div>
+    @yield('templates')
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

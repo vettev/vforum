@@ -1,4 +1,4 @@
-<div class="post">
+<div class="post" id="post-{{ $post->id }}">
     <div class="post-at">
         {{ $post->created_at->diffForHumans() }}
     </div>
@@ -11,7 +11,17 @@
     </div>
     @can('manage-post', $post)
         <div class="manage manage-post">
-            You can manage this post
+            <button data-id="{{ $post->id }}" class="btn btn-info btn-sm" @click="editPost">
+                <span class="glyphicon glyphicon-edit"></span> Edit
+            </button>
+            <form action="{{ route('post.destroy', ['id' => $post->id]) }}" method="POST">
+                {{ csrf_field() }}
+                <input type="hidden" name="_method" value="DELETE">
+                <button class="btn btn-danger btn-sm">
+                    <span class="glyphicon glyphicon-remove"></span>
+                    Delete
+                </button>
+            </form>
         </div>
     @endcan
 </div>

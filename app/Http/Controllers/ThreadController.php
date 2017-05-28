@@ -123,6 +123,6 @@ class ThreadController extends Controller
         $this->authorize('manage-thread', $thread);
         $thread->delete();
 
-        return redirect()->route('thread.index');
+        return redirect()->route('index');
     }
 }
